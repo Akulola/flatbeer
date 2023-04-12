@@ -17,13 +17,14 @@ function fetchOneBeer(index = 1) {
         document.getElementById("beer-description").textContent = data.description  
         //this fetches beer reviews from the server;
         const reviews = data.reviews;
-    console.log(reviews)
-    const reviewList = document.getElementById("review-list");
-    reviewList.innerHTML = "";   
-    for (const review of reviews) {
+        
+        const reviewList = document.getElementById("review-list");
+         reviewList.innerHTML = "";   
+        for (const review of reviews) {
         const listItem = document.createElement("li");
-        listItem.textContent = review.name;
+        listItem.textContent = review;
         reviewList.appendChild(listItem);
+        console.log(reviews)
     }
     });
     };
