@@ -14,23 +14,21 @@ function fetchOneBeer(index = 1) {
         beerName.textContent = data.name;
         beerName.dataset.id = data.id;
         document.getElementById("beer-image").src = data.image_url
-        document.getElementById("beer-description").textContent = data.description
-        
-        //this fetches beer reviews from the server
+        document.getElementById("beer-description").textContent = data.description  
+        //this fetches beer reviews from the server;
         const reviews = data.reviews;
-        console.log(reviews)
-        const reviewList = document.getElementById("review-list");
-        reviewList.innerHTML = "";   
-        reviews.forEach((review) => {
-            const listItem = document.createElement("li");
-            listItem.textContent = review.name;
-            reviewList.appendChild(listItem);
-        });
+    console.log(reviews)
+    const reviewList = document.getElementById("review-list");
+    reviewList.innerHTML = "";   
+    for (const review of reviews) {
+        const listItem = document.createElement("li");
+        listItem.textContent = review.name;
+        reviewList.appendChild(listItem);
+    }
     });
-}
-
-
+    };
 // Function that will fetch all beers from the server and serve them in a list
+fetchAllBeers();
 function fetchAllBeers() {
     fetch(`${pathURL}`)
    .then((response) => {
@@ -46,6 +44,3 @@ function fetchAllBeers() {
         });
    });
 }
-
-
-fetchAllBeers();
