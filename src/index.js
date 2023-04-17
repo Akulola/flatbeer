@@ -24,7 +24,7 @@ function fetchOneBeer(index = 1) {
         const listItem = document.createElement("li");
         listItem.textContent = review;
         reviewList.appendChild(listItem);
-        console.log(reviews)
+         console.log(reviews)
     }
     });
     };
@@ -45,3 +45,31 @@ function fetchAllBeers() {
         });
    });
 }
+
+//Event Listener to listen for a submit event
+const reviewForm = document.getElementById("review-form");
+reviewForm.addEventListener("submit", addReview);
+
+//Function to handle the form submission
+function addReview(event) {
+    event.preventDefault();
+    const reviewInput = document.getElementById("review");
+    const reviewText = review.value;
+    const reviewList = document.getElementById("review-list");
+    const newReview = document.createElement("li");
+    newReview.textContent = reviewText;
+    reviewList.appendChild(newReview);
+    reviewInput.value = "";
+  
+    // send the new review to the server
+    const beerId = document.getElementById("beer-name").dataset.id;
+    fetch(`${pathURL}/${index}/reviews`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ review: reviewText }),
+  });
+  //I'm having a problem with the then part of this code, Once I add that part it stops communicating with the server.
+  }
+
