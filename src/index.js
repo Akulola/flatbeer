@@ -62,18 +62,18 @@ function addReview(event) {
     reviewInput.value = "";
   
     // send the new review to the server
-    const addReview = (reviewText, index) => {
-    const configObject = {
+     const configObject = {
         method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ review: reviewText }),  
     }
-    fetch(`${pathURL}/${index}/reviews`, configObject)
+    fetch(`${pathURL}/1/reviews`, configObject)
     .then((response) => {
         return response.json();
       })
-    .then((data) => console.log(data))
+    .then((beer) => console.log(beer))
     .catch((err) => console.error(err))
-  }
+}
+addReview()
