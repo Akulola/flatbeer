@@ -63,13 +63,17 @@ function addReview(event) {
   
     // send the new review to the server
     const beerId = document.getElementById("beer-name").dataset.id;
-    fetch(`${pathURL}/${index}/reviews`, {
-      method: "POST",
+    const configObject = {
+        method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ review: reviewText }),
-  });
-  //I'm having a problem with the then part of this code, Once I add that part it stops communicating with the server.
+      body: JSON.stringify({ review: reviewText }),  
+    }
+    fetch(`${pathURL}/${index}/reviews`, configObject)
+    .then((response) => {
+        return response.json();
+      })
+    .then((beer) => console.log(beer))
+    .catch((err) => console.error(err))
   }
-
