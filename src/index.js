@@ -62,7 +62,7 @@ function addReview(event) {
     reviewInput.value = "";
   
     // send the new review to the server
-    const beerId = document.getElementById("beer-name").dataset.id;
+    const addReview = (reviewText, index) => {
     const configObject = {
         method: "POST",
       headers: {
@@ -74,6 +74,6 @@ function addReview(event) {
     .then((response) => {
         return response.json();
       })
-    .then((beer) => console.log(beer))
+    .then((data) => console.log(data))
     .catch((err) => console.error(err))
   }
